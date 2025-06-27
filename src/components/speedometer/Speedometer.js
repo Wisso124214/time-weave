@@ -35,23 +35,6 @@ export default function Speedometer({ style, properties, now = 0 }) {
   const startAngle = degreesToRads((180 - props.angle) / 2);
   const endAngle = degreesToRads(((180 - props.angle) / 2) + props.angle);
 
-  const moveTheNeedle = (now) => {
-    // const total = props.lines * props.stepScale + props.offsetLines + (props.startScale * props.spacesBetweenValues);
-    const total = props.lines * props.stepScale + props.offsetLines;
-    if (now > total || now < 0)
-      now = now % total; // Wrap around if now exceeds total
-
-    now -= props.startScale;
-    // Calculate the angle for the needle and rotate the .speedometer-needle div
-    const scaleWide = degreesToRads(360 - props.angle - props.offsetAngle * 2);
-    const angle = (now / total) * scaleWide - degreesToRads(180 - props.angle / 2) + degreesToRads(props.offsetAngle);
-    const needle = speedometerRef.current.querySelector('.speedometer-needle');
-    if (needle) {
-      needle.style.transform = `translate(-50%, -100%) rotate(${angle}rad)`;
-      needle.style.transformOrigin = 'bottom center'; 
-    }
-  }
-
   // Nuevo useEffect para ajustar el tamaño del speedometer según props.size
   React.useEffect(() => {
     if (speedometerRef.current) {
@@ -60,7 +43,20 @@ export default function Speedometer({ style, properties, now = 0 }) {
   }, [speedometerRef]);
 
   React.useEffect(() => {
-    moveTheNeedle(now);
+    const total = props.lines * props.stepScale + props.offsetLines / props.spacesBetweenValues;
+    now -= props.startScale;
+
+    if (now > total || now < 0)
+      now = now % total; // Wrap around if now exceeds total
+
+    // Calculate the angle for the needle and rotate the .speedometer-needle div
+    const scaleWide = degreesToRads(360 - props.angle - props.offsetAngle * 2);
+    const angle = (now / (total)) * scaleWide - degreesToRads(180 - props.angle / 2) + degreesToRads(props.offsetAngle);
+    const needle = speedometerRef.current.querySelector('.speedometer-needle');
+    if (needle) {
+      needle.style.transform = `translate(-50%, -100%) rotate(${angle}rad)`;
+      needle.style.transformOrigin = 'bottom center'; 
+    }
   }, [now]);
 
   React.useEffect(() => {

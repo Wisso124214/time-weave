@@ -1,25 +1,22 @@
 import React from 'react';
 import './CarClock12.css';
 import Speedometer from '@components/speedometer/Speedometer';
+import car_sfx from '@src/assets/sounds/car-start-sfx.wav';
+import { ClockContext } from '@context/ClockContext';
 
 export default function CarClock() {
-
-  const [timestamp, setTimestamp] = React.useState(Date.now());
+  const { timestamp, timeModifier } = React.useContext(ClockContext);
+  const adjustedTimestamp = timestamp + timeModifier * 1000;
   
   // Update the timestamp every second to force a re-render
   React.useEffect(() => {
-    const audio = new Audio(require('@src/assets/sounds/car-start-sfx.wav'));
+    const audio = new Audio(car_sfx);
     audio.volume = 1;
     audio.autoplay = true;
-
-    const interval = setInterval(() => {
-      setTimestamp(Date.now());
-    }, 1000);
-    return () => clearInterval(interval);
   }, []);
-
+  
   return (
-    <div className="car-clock">
+    adjustedTimestamp && <div className="car-clock">
       <Speedometer
         style={{
           transform: 'translate(60%, -80%)',
@@ -35,7 +32,7 @@ export default function CarClock() {
           size: 40,
           unit: 'm/s',
         }}
-        now={new Date(timestamp).getSeconds()}
+        now={new Date(adjustedTimestamp).getSeconds()}
       />
       <Speedometer
         style={{
@@ -52,24 +49,24 @@ export default function CarClock() {
           size: 50,
           unit: 'rpm',
         }}
-        now={new Date(timestamp).getMinutes() + new Date(timestamp).getSeconds() / 60}
+        now={new Date(adjustedTimestamp).getMinutes() + new Date(adjustedTimestamp).getSeconds() / 60}
       />
       <Speedometer
         style={{
           transform: 'translate(-160%, -80%)',
         }}
         properties={{
-          lines: 11,
+          lines: 12,
           fontSize: 15,
-          startScale: 1,
+          startScale: 0,
           stepScale: 1,
           spacesBetweenValues: 2,
           scaleFactor: 1.35,
           size: 40,
-          am_pm: new Date(timestamp).getHours() >= 12 ? 'pm' : 'am',
+          am_pm: new Date(adjustedTimestamp).getHours() >= 12 ? 'pm' : 'am',
           unit: 'km/h',
         }}
-        now={new Date(timestamp).getHours() % 12 + new Date(timestamp).getMinutes() / 60 + new Date(timestamp).getSeconds() / 3600} 
+        now={new Date(adjustedTimestamp).getHours() % 12 + new Date(adjustedTimestamp).getMinutes() / 60 + new Date(adjustedTimestamp).getSeconds() / 3600} 
       />
     </div>
   );

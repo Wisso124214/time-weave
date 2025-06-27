@@ -14,7 +14,7 @@ function AppContextProvider() {
     onClose: () => setPopUpMessage(prev => ({ ...prev, isVisible: false })),
   });
 
-  let context = {
+  let contextValue = {
     currentPage,
     setCurrentPage,
     type,
@@ -26,7 +26,7 @@ function AppContextProvider() {
   }
 
   return (
-    <AppContext.Provider value={context}>
+    <AppContext.Provider value={contextValue}>
       <App />
     </AppContext.Provider>
   );
