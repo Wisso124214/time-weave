@@ -9,6 +9,7 @@ module.exports = override(
         '@src': './src',
         '@components': './src/components',
         '@assets': './src/assets',
+        '@context': './src/context',
       },
     },
   ]),
