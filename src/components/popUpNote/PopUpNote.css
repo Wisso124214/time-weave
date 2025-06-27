@@ -1,0 +1,161 @@
+.pop-up-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  z-index: -1;
+}
+
+.pop-up-overlay.visible {
+  z-index: 1000;
+  opacity: 1;
+  position: fixed;
+}
+
+.pop-up-content {
+  /* display: none; */
+  position: relative;
+  border: 2px solid var(--secondary-color);
+  background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
+  color: var(--text-color-light);
+  border-radius: 0.75rem;
+  padding: 2rem;
+  height: auto;
+  width: 10px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  transition:
+    opacity .75s ease-in-out,
+    transform .75s cubic-bezier(0.4, 0, 0.2, 1),
+    width .75s ease-in-out,
+}
+
+.pop-up-content.visible {
+  width: 50vw;
+  max-width: 600px;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}
+
+.content-title,
+.content-text {
+  width: 100%;
+  font-size: 1rem;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color-light);
+  resize: none;
+  overflow-y: auto;
+}
+
+.content-title::placeholder,
+.content-text::placeholder {
+  color: var(--secondary-color);
+  font-style: italic;
+  font-weight: 300;
+}
+
+.content-title::placeholder {
+  font-weight: 600;
+}
+
+.content-title:focus,
+.content-text:focus {
+  outline: none;
+}
+
+.content-text {
+  height: 15vh;
+}
+
+.content-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-top: 1rem;
+  margin-bottom: 2rem;
+  width: 90%;
+  height: 5rem;
+}
+
+.close-button, .enable-edit-button {
+  width: 1.5rem;
+  height: 1.5rem;
+
+  position: absolute;
+  top: 1.25rem;
+  background-color: transparent;
+  border: none;
+  color: var(--text-color-light);
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.close-button {
+  right: 1.25rem;
+}
+
+.enable-edit-button {
+  right: 4rem;
+}
+
+.enable-edit-button svg {
+  width: 100%;
+  height: 100%;
+  fill: var(--text-color-light);
+}
+
+.character-count {
+  position: relative;
+  font-size: 0.8rem;
+  color: var(--secondary-color);
+  margin-top: .5rem;
+  margin-bottom: 3rem;
+  user-select: none;
+}
+
+.edit-text-buttons, .edit-buttons {
+  display: flex;
+  position: absolute;
+  bottom: 1.5rem;
+  left: 1.5rem;
+  align-items: center;
+  user-select: none;
+}
+
+.edit-text-buttons svg, .edit-buttons svg {
+  width: 1.1rem;
+  height: 1.1rem;
+  fill: var(--text-color-light);
+  margin-right: .5rem;
+  cursor: pointer;
+  padding: 0.5rem;
+  border-radius: 0.5rem;
+}
+
+.edit-text-buttons svg:hover {
+  background-color: color-mix(in srgb, var(--text-color-light) 20%, transparent);
+}
+
+.edit-text-buttons svg:active {
+  background-color: color-mix(in srgb, var(--text-color-light) 30%, transparent);
+}
+
+.edit-text-buttons svg.disabled {
+  opacity: 0.6;
+  cursor: default;
+}
+
+.edit-text-buttons svg.disabled:hover {
+  background-color: transparent;
+}

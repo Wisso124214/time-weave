@@ -1,0 +1,80 @@
+.add-note-button-container {
+  position: fixed;
+  bottom: 2.5rem;
+  right: 2.5rem;
+  z-index: 1000;
+  border: 2px solid var(--secondary-color);
+  
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  box-shadow: 0 0 10px 1px black;
+  background-color: var(--primary-color);
+  color: var(--secondary-color);
+  opacity: 0;
+  transform: scale(0.8);
+  
+  --color-plus-icon: var(--text-color-light);
+
+  transition:
+  background-color 0.3s ease-in-out,
+  color 0.3s ease-in-out,
+  box-shadow 0.3s ease-in-out,
+  border-color 0.3s ease-in-out,
+  transform 0.3s ease-in-out,
+  opacity 0.3s ease-in-out,
+  transform 0.3s ease-in-out;
+}
+
+.add-note-button-container.visible {
+  display: block;
+  transform: scale(1);
+  opacity: 1;
+  box-shadow: 0 0 15px 1px black;
+}
+
+.add-note-button-container.visible:hover {
+  display: block;
+  color: var(--secondary-color);
+  background-color: transparent;
+  border: 2px solid var(--secondary-color);
+  --color-plus-icon-hover: var(--secondary-color);
+  transform: scale(1.2);
+  box-shadow: 0 0 20px 3px black;
+
+  cursor: pointer;
+  /* background-color: var(--background-color); */
+}
+
+.add-note-button {
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  border: none;
+  background-color: inherit;
+  color: inherit;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+/* .add-note-button:hover {
+  background-color: color-mix(in srgb, var(--primary-color) 80%, black);
+} */
+
+.add-note-button svg {
+  align-self: center;
+  
+  width: 80%;
+  height: 80%;
+  stroke-width: 0.5;
+  fill: var(--color-plus-icon);
+  stroke: var(--color-plus-icon);
+  color: var(--color-plus-icon);
+}
+
+.add-note-button:hover svg {
+  fill: var(--color-plus-icon-hover);
+  stroke: var(--color-plus-icon-hover);
+  color: var(--color-plus-icon-hover);
+}

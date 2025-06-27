@@ -1,0 +1,49 @@
+.pop-up-message {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background-color: rgba(0, 0, 0, 0.55);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  backdrop-filter: blur(2px);
+  opacity: 0;
+  transition: opacity .5s ease-in-out;
+  z-index: -1;
+}
+
+.pop-up-message.visible {
+  z-index: 1000;
+  opacity: 1;
+  position: fixed;
+}
+
+.pop-up-content-message {
+  position: relative;
+  border: 2px solid var(--secondary-color);
+  background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
+  color: var(--text-color-light);
+  border-radius: 1rem;
+  padding: 2rem;
+  height: auto;
+  width: 10px;
+  text-align: center;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  opacity: 0;
+  transform: scale(0);
+  pointer-events: none;
+  transition:
+    opacity .75s ease-in-out,
+    transform .75s cubic-bezier(0.4, 0, 0.2, 1),
+    width .75s ease-in-out;
+}
+
+.pop-up-content-message.visible {
+  width: 20vw;
+  min-width: 200px;
+  opacity: 1;
+  transform: scale(1);
+  pointer-events: auto;
+}

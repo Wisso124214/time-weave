@@ -1,0 +1,32 @@
+.tooltip-container {
+  position: relative; 
+  font-size: 0.8rem;
+}
+
+.tooltip-content {
+  opacity: 0;
+  width: max-content;
+  max-width: calc(var(--form-width) * 0.75);
+  pointer-events: none;
+  content: attr(data-tooltip);
+  text-align: center;
+  position: absolute;
+  bottom: 100%;
+  left: 50%;
+  transform: translate(-50%, 0);
+  background-color: var(--text-color-dark);
+  color: var(--text-color-light);
+  padding: 0.5rem 1rem;
+  border-radius: 1.2rem;
+  z-index: 10;
+  transition: opacity 0.3s ease, transform 0.3s ease;
+}
+
+.tooltip-content.visible {
+  opacity: 1;
+  transform: translate(-50%, -0.5rem);
+}
+
+
+
+

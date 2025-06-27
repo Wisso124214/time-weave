@@ -1,0 +1,7 @@
+   
+ - Calculate scaleFactor and fontSize on Speedometer.js, do not use it as params
+ 
+ - Custom the background-color of <option> tag (Dropdown component)
+
+
+✔✔ Fix show loader when is changing of clock

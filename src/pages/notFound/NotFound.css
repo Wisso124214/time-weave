@@ -1,0 +1,52 @@
+.not-found {
+  position: relative;
+  place-self: center;
+  justify-items: center;
+  background-color: color-mix(in srgb, var(--primary-color) 40%, transparent);
+  color: var(--text-color-light);
+  border-radius: 1.5rem;
+  padding: 8vh 8vw;
+  max-width: 600px;
+  box-shadow: 0 2px 15px rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(3px);
+  top: 20vh;
+}
+
+.not-found-title, .not-found-text {
+  font-weight: bold;
+  text-align: center;
+}
+
+.not-found-title {
+  margin: 0;
+  font-size: 8rem;
+}
+
+.not-found-text {
+  font-size: 2rem;
+  font-weight: 600;
+  margin-top: 0;
+  margin-bottom: 4rem;
+}
+
+.not-found-content {
+  width: max-content;
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  font-style: italic;
+}
+
+.not-found-content > * {
+  margin: 0 0.5rem;
+}
+
+.not-found-link {
+  color: var(--secondary-color);
+  text-decoration: underline;
+  cursor: pointer;
+}
+
+.not-found-link:hover {
+  color: var(--primary-color);
+}

@@ -1,0 +1,126 @@
+.header {
+  display: flex;
+  position: fixed;
+  background-color: var(--primary-color);
+  padding: 1rem;
+  /* justify-content: space-between; */
+  align-items: center;
+  color: var(--text-color-dark);
+  font-size: 40px;
+  box-shadow: 0 2px 4px var(--secondary-color);
+  height: 40px;
+  width: 100vw;
+  z-index: 1000;
+}
+
+/* .header * {
+  margin-right: 2vw;
+} */
+
+.header-title {
+  width: 'max-content';
+  align-self: start;
+}
+  
+
+.header-logo {
+  height: 90%;
+  border-radius: 100px;
+  box-shadow: 0 0 5px 3px var(--background-color);
+  margin-right: 2.5vw;
+  margin-left: 0.5vw;
+}
+
+.header-icons {
+  display: flex;
+  align-items: center;
+  position: absolute;
+  right: 4rem;
+}
+
+.header-icons > * {
+  margin-left: 2.5vw;
+}
+
+.header-avatar {
+  height: 100%;
+  width: 40px;
+  display: flex;
+  justify-content: center;
+  cursor: pointer;
+}
+
+.icon-avatar {
+  height: 100%;
+  width: 100%;
+}
+
+.header-gear {
+  height: 100%;
+  width: 32px;
+}
+
+.types-note-dropdown {
+  margin-top: -1rem;
+}
+
+.types-note-select {
+  text-transform: capitalize;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--secondary-color);
+  /* appearance: none; */     /* To hide the arrow */
+}
+
+.types-note-select:focus {
+  outline: none;
+}
+
+.menu {
+  position: absolute;
+  right: 0;
+  min-width: 250px;
+  top: 100%;
+  padding: 0.5rem 0;
+  background-color: color-mix(in srgb, var(--primary-color) 90%, transparent);
+  border-radius: 0.5rem;
+  border: 2px solid var(--secondary-color); 
+  box-shadow: 0 0 10px 1px var(--background-color);
+  color: attr(text-color, var(--text-color-dark));
+  font-size: 1.2rem;
+  font-weight: 600;
+}
+
+.menu-title {
+  font-size: inherit;
+  font-weight: inherit;
+  padding: 0.5rem;
+  color: inherit;
+}
+
+.menu-item {
+  display: flex;
+  justify-content: space-between;
+  flex-direction: row;
+  align-items: center;
+  padding: 0 0.7rem;
+  color: inherit;
+  cursor: pointer;  
+  margin: 0 0.7rem;
+  user-select: none;
+}
+
+.menu-item:hover {
+  background-color: color-mix(in srgb, var(--primary-color) 85%, var(--background-hover, white));
+  border-radius: 0.5rem;
+}
+
+.menu-item svg {
+  width: 1.2rem;
+  height: 1.2rem;
+  fill: var(--text-color-dark);
+  
+  stroke-width: .5;
+  stroke: var(--text-color-dark);
+}

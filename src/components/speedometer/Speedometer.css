@@ -1,0 +1,85 @@
+.speedometer {
+  --size-speedometer: 40vh;
+
+  position: absolute;
+  width: var(--size-speedometer);
+  height: var(--size-speedometer);
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background: linear-gradient(to bottom,
+    #333333 0%,   /* Gris oscuro para el brillo superior */
+    #222222 12%,  /* Tono más oscuro */
+    #111111 25%,  /* Casi negro */
+    #000000 38%,  /* Negro puro para la profundidad */
+    #111111 50%,  /* Vuelve a un casi negro para el centro */
+    #222222 62%,  /* Tono más oscuro */
+    #333333 75%,  /* Gris oscuro */
+    #222222 88%,  /* Otro tono oscuro para el reflejo inferior */
+    #111111 100%  /* Terminando con un tono más oscuro */
+  );
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: 'TTBB', cursive;
+  z-index: -1;
+}
+
+.speedometer-container {
+  width: 88%;
+  height: 88%;
+  display: flex;
+  border-radius: 50%;
+  background-color: #111;
+  position: relative;
+  font-family: inherit;
+  z-index: -1;
+
+  --speedometer-foreground-color: #171717;
+  --speedometer-scale-color: #F99E34;
+}
+
+#speedometer-canvas {
+  height: 100%;
+  font-family: inherit;
+  z-index: 0;
+}
+
+.speedometer-needle {
+  /* background: #FDC714;
+  background: #510500; */
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-left: calc(0.0196 * var(--size-speedometer)) solid transparent; /* Equivale a .98vh respecto al ancho del speedometer */
+  border-right: calc(0.0196 * var(--size-speedometer)) solid transparent; /* Equivale a .98vh respecto al ancho del speedometer */
+  border-bottom: calc(0.375 * var(--size-speedometer)) solid #D98218; /* Equivale a 18.75vh respecto al ancho del speedometer */
+  border-radius: 50%;
+  transform: translate(-50%, -100%) rotate(-130deg);
+  transform-origin: bottom center;
+  z-index: 1;
+  transition: transform 1s ease-in-out;
+}
+
+.speedometer-text, .speedometer-text-secondary {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, 400%);
+  font-size: calc(0.07 * var(--size-speedometer)); /* Equivale a 5vh respecto al ancho del speedometer */
+  color: white;
+  font-weight: bold;
+  text-align: center;
+  font-family: inherit;
+  z-index: 1;
+}
+
+.speedometer-text-secondary {
+  transform: translate(-50%, -40%);
+  font-size: calc(.40 * var(--size-speedometer)); /* Equivale a 4vh respecto al ancho del speedometer */
+  color: color-mix(in srgb, #F99E34, 70% color-mix(in srgb, black 80%, transparent));
+  z-index: 0;
+}

@@ -1,0 +1,18 @@
+.dropdown-select {
+  text-transform: capitalize;
+  padding: 0.3rem;
+  border: none;
+  border-radius: 0.5rem;
+  background-color: var(--secondary-color);
+  font-weight: 500;
+  /* appearance: none; */     /* To hide the arrow */
+}
+
+.dropdown-select:focus {
+  outline: none;
+}
+
+/* Use the hover_color to style the dropdown options */
+.dropdown-option:hover {
+  background-color: var(--hover_color);
+}

@@ -1,0 +1,30 @@
+.slidecontainer {
+  position: absolute;
+  bottom: 20px;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.slider {
+  width: 80%;
+  outline: none;
+  opacity: 0.7;
+  transition: opacity .2s;
+  accent-color: var(--primary-color);
+}
+
+.slider:focus,
+.slider:hover {
+  outline: none;
+  box-shadow: none;
+  opacity: 0.7;
+}
+
+.slider-label {
+  color: var(--text-color-light);
+  font-size: 1.2rem;
+  margin-bottom: 10px;
+}

@@ -1,0 +1,74 @@
+.note {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  border: 2px solid var(--secondary-color);
+  border-radius: .75rem;
+  width: 25vh;
+  color: var(--text-color-light);
+  padding: 2rem;
+  padding-top: 1.5rem;
+  height: max-content;
+  user-select: none;
+
+  backdrop-filter: blur(2px);
+}
+
+.note-square {
+  height: 25vh;
+}
+
+.note:hover {
+  box-shadow: 0 0 12px 12px rgba(0, 0, 0, .5);
+  transform: scale(1.1);
+  transition: 
+    transform .2s ease-in-out, 
+    box-shadow .2s ease-in-out;
+  cursor: pointer;
+}
+
+.note-title {
+  margin-left: -.5rem;
+  font-size: 1.5rem;
+  font-weight: 500;
+  margin-bottom: 1rem;
+  
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 1; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+.note-content-square {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 5; /* Number of lines to show */
+  -webkit-box-orient: vertical;
+}
+
+/* .note-content-all {
+  overflow: hidden;
+  text-overflow: ellipsis;
+} */
+
+.note-title-titles {
+  margin-bottom: 2rem;
+  -webkit-line-clamp: 2;
+}
+
+.note-details {
+  font-size: .7rem;
+
+  display: flex;
+  position: absolute;
+  bottom: .8rem;
+  right: 1.5rem;
+  flex-direction: column;
+  text-align: right;
+  color: var(--secondary-color);
+  font-style: italic;
+
+  user-select: none;
+}

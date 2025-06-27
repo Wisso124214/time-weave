@@ -1,0 +1,15 @@
+.list-notes {
+  position: relative;
+  top: 150px;
+  left: 10vw;
+  display: grid;
+  gap: 2.5rem;
+  grid-template-columns: repeat(auto-fill, 35vh);
+  grid-auto-rows: 35vh, auto;
+  padding: 10px;
+  width: 75vw;
+}
+
+.list-notes-square {
+  grid-auto-rows: 35vh;
+}
