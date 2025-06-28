@@ -1,5 +1,5 @@
 import './Header.css';
-import logo from '@assets/logo-test-white.png';
+import logo from '@assets/images/logos/logo-test-white.png';
 import React from 'react';
 import axios from 'axios';
 import config from '@src/config/config.js';

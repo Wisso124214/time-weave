@@ -5,10 +5,11 @@ import Navigation from '@components/navigation/Navigation';
 import ClockContextProvider, { ClockContext } from '@context/ClockContext';
 
 export default function Clocks() {
-  const [clockSelected, setClockSelected] = React.useState('Blank');
+  const [clockSelected, setClockSelected] = React.useState('WallClock');
   const allClocks = [
     'Digital',
     'CarClock',
+    'WallClock',
     'Blank',
   ];
 

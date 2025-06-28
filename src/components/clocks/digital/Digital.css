@@ -55,12 +55,12 @@
 
 .digital-date {
   font-family: inherit;
-  font-style: italic;
+  
   position: absolute;
   bottom: 5px;
   right: 15px;
-  color: gray;
-} 
+  color: color-mix(in srgb, var(--primary-color), 25% transparent);
+}
 
 .digital-am-pm {
   font-family: inherit;

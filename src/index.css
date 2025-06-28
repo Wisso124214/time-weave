@@ -24,7 +24,7 @@
   --text-color-dark: #222;
   --text-color-light: #fff;
 
-  --background-url-image: url('./assets/background-white.png');
+  --background-url-image: url('./assets/images/background/background-white.png');
   background:
     linear-gradient(color-mix(in srgb, var(--background-color) 30%, transparent)),
     var(--background-url-image) center/cover repeat,
