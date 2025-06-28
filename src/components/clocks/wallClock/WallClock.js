@@ -1,11 +1,22 @@
 import React from 'react';
 import './WallClock.css';
 import { ClockContext } from '@context/ClockContext';
+import tick from '@assets/sounds/clock-ticking.wav'
 
 export default function WallClock() {
 
   const { timestamp, timeModifier } = React.useContext(ClockContext);
   const adjustedTimestamp = timestamp + timeModifier * 1000;
+
+  React.useEffect(() => {
+    const audio = new Audio(tick);
+    audio.volume = 1;
+    const interval = setInterval(() => {
+      audio.currentTime = 0; // Reset audio to start
+      audio.play().catch(err => console.error('Audio play error:', err));
+    }, 1000); // Play sound every second
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [adjustedTimestamp]);
 
   const hours = new Date(adjustedTimestamp).getHours();
   const minutes = new Date(adjustedTimestamp).getMinutes();
@@ -29,7 +40,7 @@ export default function WallClock() {
       minuteHand.style.transform = `translate(calc(-50% + 45px), calc(-50% + 210px)) rotate(${minuteDeg}deg)`;
       minuteHand.style.transition = `transform ${minuteDeg !== offsetDegMinute ? 1 : 0}s ease-in-out`;
       secondHand.style.transform = `translate(0, 100px) rotate(${secondDeg}deg)`;
-      secondHand.style.transition = `transform ${secondDeg !== 0 ? 1 : 0}s ease-in-out`;
+      // secondHand.style.transition = `transform ${secondDeg !== 0 ? 1 : 0}s ease-in-out`;
     }
   }, [hourDeg, minuteDeg, secondDeg]);
 

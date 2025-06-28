@@ -1,19 +1,48 @@
 import React from 'react';
 import './CarClock.css';
 import Speedometer from '@components/speedometer/Speedometer';
-import car_sfx from '@src/assets/sounds/car-start-sfx.wav';
 import { ClockContext } from '@context/ClockContext';
+import car_sfx from '@src/assets/sounds/car-start-sfx.wav';
+import car_alarm_sfx from '@assets/sounds/car-alarm.wav'
 
 export default function CarClock() {
   const { timestamp, timeModifier, format } = React.useContext(ClockContext);
   const adjustedTimestamp = timestamp + timeModifier * 1000;
   
+  const [countdown, setCountdown] = React.useState(0);
+  const playFirstAudioAsDefault = React.useRef(true);
+  const secAudioEach = 5;
+  
+  React.useEffect(() => {
+    const audio_start = new Audio(car_sfx);
+    audio_start.volume = 1;
+    audio_start.autoplay = true;
+  }, []);
+
   // Update the timestamp every second to force a re-render
   React.useEffect(() => {
-    const audio = new Audio(car_sfx);
-    audio.volume = 1;
-    audio.autoplay = true;
-  }, []);
+    const tick = new Audio(car_alarm_sfx);
+    tick.volume = 1;
+    const interval = setInterval(() => {
+      if (countdown === secAudioEach - 1 && playFirstAudioAsDefault)
+        tick.currentTime = 0;
+      else
+        tick.currentTime = 0.3;
+
+      tick.play().catch(err => console.error('Audio play error:', err));
+
+      if (countdown === secAudioEach - 1 && playFirstAudioAsDefault) {
+        const innerInterval = setInterval(() => {
+          if (tick.currentTime > 0.3) {
+            tick.pause();
+            clearInterval(innerInterval);
+          }
+        }, 10);
+      }
+      setCountdown(prev => (prev + 1) % secAudioEach);
+    }, 1000); // Play sound every second
+    return () => clearInterval(interval); // Cleanup on unmount
+  }, [adjustedTimestamp]);
   
   return (
     adjustedTimestamp && <div className="car-clock">

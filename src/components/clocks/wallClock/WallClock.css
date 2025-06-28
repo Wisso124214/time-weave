@@ -28,7 +28,6 @@
   background: url('@assets/images/wall-clock/hour-hand.png') no-repeat center center;
   width: 248px;
   height: 263px;
-  transition: transform 1s ease;
 }
 
 .hour-hand {
@@ -60,6 +59,7 @@ svg {
   width: 80px;
   height: 80px;
   transform: translate(-50%, -50%);
+  z-index: 1;
 }
 
 svg circle {
