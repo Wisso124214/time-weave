@@ -1,11 +1,11 @@
 import React from 'react';
-import './CarClock12.css';
+import './CarClock.css';
 import Speedometer from '@components/speedometer/Speedometer';
 import car_sfx from '@src/assets/sounds/car-start-sfx.wav';
 import { ClockContext } from '@context/ClockContext';
 
 export default function CarClock() {
-  const { timestamp, timeModifier } = React.useContext(ClockContext);
+  const { timestamp, timeModifier, format } = React.useContext(ClockContext);
   const adjustedTimestamp = timestamp + timeModifier * 1000;
   
   // Update the timestamp every second to force a re-render
@@ -31,6 +31,7 @@ export default function CarClock() {
           scaleFactor: 1.35,
           size: 40,
           unit: 'm/s',
+          am_pm: format === '12' ? (new Date(adjustedTimestamp).getMonth() + 1).toString().padStart(2, '0') : (new Date(adjustedTimestamp).getFullYear() % 100).toString().padStart(2, '0'),
         }}
         now={new Date(adjustedTimestamp).getSeconds()}
       />
@@ -48,6 +49,7 @@ export default function CarClock() {
           scaleFactor: 1.65,
           size: 50,
           unit: 'rpm',
+          am_pm: format === '12' ? (new Date(adjustedTimestamp).getDate()).toString().padStart(2, '0') : (new Date(adjustedTimestamp).getMonth() + 1).toString().padStart(2, '0'),
         }}
         now={new Date(adjustedTimestamp).getMinutes() + new Date(adjustedTimestamp).getSeconds() / 60}
       />
@@ -59,12 +61,12 @@ export default function CarClock() {
           lines: 12,
           fontSize: 15,
           startScale: 0,
-          stepScale: 1,
-          spacesBetweenValues: 2,
+          stepScale: format === '12' ? 1 : 2,
+          spacesBetweenValues: format === '12' ? 2 : 4,
           scaleFactor: 1.35,
           size: 40,
-          am_pm: new Date(adjustedTimestamp).getHours() >= 12 ? 'pm' : 'am',
           unit: 'km/h',
+          am_pm: format === '12' ? new Date(adjustedTimestamp).getHours() >= 12 ? 'pm' : 'am' : (new Date(adjustedTimestamp).getDate()).toString().padStart(2, '0'),
         }}
         now={new Date(adjustedTimestamp).getHours() % 12 + new Date(adjustedTimestamp).getMinutes() / 60 + new Date(adjustedTimestamp).getSeconds() / 3600} 
       />

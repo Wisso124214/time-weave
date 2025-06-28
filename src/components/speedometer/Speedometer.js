@@ -114,7 +114,7 @@ export default function Speedometer({ style, properties, now = 0 }) {
 
           const label = document.createElement('div');
           label.className = 'speedometer-label';
-          label.innerText = value;
+          label.innerText = value.toLocaleString('en-US', { minimumIntegerDigits: 2, useGrouping: false });
           label.style.position = 'absolute';
           label.style.left = `${textX}px`;
           label.style.top = `${textY}px`;

@@ -7,20 +7,40 @@ import ClockContextProvider, { ClockContext } from '@context/ClockContext';
 export default function Clocks() {
   const [clockSelected, setClockSelected] = React.useState('Blank');
   const allClocks = [
-    'CarClock12',
-    'CarClock24',
+    'Digital',
+    'CarClock',
     'Blank',
-    'Clock3',
-    'Clock4',
-    'Clock5'
   ];
 
   return (
     <div className="clocks">
       <ClockContextProvider>
         <ClockContext.Consumer>
-          {({ timeModifier, setTimeModifier }) => (
+          {({ timeModifier, setTimeModifier, format, setFormat }) => (
             <>
+              <Dropdown
+                allOptions={['12', '24']}
+                optionSelected={format || 'default'}
+                setOptionSelected={setFormat}
+                defaultOption='12'
+                styles={{
+                  dropdown: {
+                    position: 'absolute',
+                    top: '30px',
+                    right: '180px',
+                  },
+                  select: {
+                    border: '3px solid black',
+                    borderRadius: '.7rem',
+                    paddingLeft: '.5rem',
+                    paddingRight: '.8rem',
+                  },
+                  option: {
+                    borderRadius: '.7rem',
+                    hover_color: 'black', // Does not work
+                  }
+                }}
+              />
               <Dropdown
                 allOptions={allClocks}
                 optionSelected={clockSelected || 'default'}
@@ -46,7 +66,7 @@ export default function Clocks() {
               />
               <Navigation 
                 pages={allClocks} 
-                currentPage={clockSelected === 'default' ? 'CarClock12' : clockSelected} 
+                currentPage={clockSelected === 'default' ? 'Digital' : clockSelected} 
                 rootPath='components/clocks'  // Adjust the path to Navigation.js
               />
               <div className="slidecontainer">
@@ -59,6 +79,7 @@ export default function Clocks() {
                   id="myRange"
                   value={typeof timeModifier === 'number' ? timeModifier : 0}
                   onChange={e => setTimeModifier(Number(e.target.value))}
+                  onDoubleClick={() => setTimeModifier(0)}
                 />
               </div>
             </>

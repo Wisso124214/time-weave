@@ -5,6 +5,7 @@ export const ClockContext = React.createContext();
 export default function ClockContextProvider({ children }) {
   const [timestamp, setTimestamp] = React.useState(Date.now());
   const [timeModifier, setTimeModifier] = React.useState(0);
+  const [format, setFormat] = React.useState('12');
 
   // Update the timestamp every second to force a re-render
   React.useEffect(() => {
@@ -19,6 +20,8 @@ export default function ClockContextProvider({ children }) {
     setTimestamp,
     timeModifier,
     setTimeModifier,
+    format,
+    setFormat,
   };
 
   return (

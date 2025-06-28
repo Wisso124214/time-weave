@@ -9,6 +9,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Digital Dismay';
+  src: url('./assets/fonts/digital-dismay/Digital Dismay.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --primary-color: #8fcfa3;
   --secondary-color: #f1e2c5;
