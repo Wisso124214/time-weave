@@ -3,13 +3,15 @@ import './Clocks.css';
 import Dropdown from '@components/dropdown/Dropdown';
 import Navigation from '@components/navigation/Navigation';
 import ClockContextProvider, { ClockContext } from '@context/ClockContext';
+import SliderTime from '@components/sliderTime/SliderTime';
 
 export default function Clocks() {
-  const [clockSelected, setClockSelected] = React.useState('Blank');
+  const [clockSelected, setClockSelected] = React.useState('WaterClock');
   const allClocks = [
     'Digital',
     'CarClock',
     'WallClock',
+    'WaterClock',
     'Blank',
   ];
 
@@ -70,19 +72,8 @@ export default function Clocks() {
                 currentPage={clockSelected === 'default' ? 'Digital' : clockSelected} 
                 rootPath='components/clocks'  // Adjust the path to Navigation.js
               />
-              <div className="slidecontainer">
-                <label className='slider-label'>Time modifier</label>
-                <input
-                  className="slider"
-                  type="range"
-                  min="-43200"
-                  max="43200"
-                  id="myRange"
-                  value={typeof timeModifier === 'number' ? timeModifier : 0}
-                  onChange={e => setTimeModifier(Number(e.target.value))}
-                  onDoubleClick={() => setTimeModifier(0)}
-                />
-              </div>
+              
+              <SliderTime setTimeModifier={setTimeModifier} />
             </>
           )}
         </ClockContext.Consumer>

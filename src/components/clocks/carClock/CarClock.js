@@ -10,28 +10,30 @@ export default function CarClock() {
   const adjustedTimestamp = timestamp + timeModifier * 1000;
   
   const [countdown, setCountdown] = React.useState(0);
-  const playFirstAudioAsDefault = React.useRef(true);
-  const secAudioEach = 5;
+  const playFirstAudioAsDefault = React.useRef(false); // Play first audio as default if seconds are even
+  const repeatSecondAudioEach = 2;
+  // const ifPlayFirstAudio = countdown === repeatSecondAudioEach - 1; 
+  const ifPlayFirstAudio = new Date(adjustedTimestamp).getSeconds() % repeatSecondAudioEach === 0; 
   
   React.useEffect(() => {
     const audio_start = new Audio(car_sfx);
     audio_start.volume = 1;
     audio_start.autoplay = true;
-  }, []);
+  }, [format]);
 
   // Update the timestamp every second to force a re-render
   React.useEffect(() => {
     const tick = new Audio(car_alarm_sfx);
     tick.volume = 1;
     const interval = setInterval(() => {
-      if (countdown === secAudioEach - 1 && playFirstAudioAsDefault)
+      if (ifPlayFirstAudio && playFirstAudioAsDefault)
         tick.currentTime = 0;
       else
         tick.currentTime = 0.3;
 
       tick.play().catch(err => console.error('Audio play error:', err));
 
-      if (countdown === secAudioEach - 1 && playFirstAudioAsDefault) {
+      if (ifPlayFirstAudio && playFirstAudioAsDefault) {
         const innerInterval = setInterval(() => {
           if (tick.currentTime > 0.3) {
             tick.pause();
@@ -39,7 +41,7 @@ export default function CarClock() {
           }
         }, 10);
       }
-      setCountdown(prev => (prev + 1) % secAudioEach);
+      setCountdown(prev => (prev + 1) % repeatSecondAudioEach);
     }, 1000); // Play sound every second
     return () => clearInterval(interval); // Cleanup on unmount
   }, [adjustedTimestamp]);

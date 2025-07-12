@@ -16,6 +16,13 @@
   font-style: normal;
 }
 
+@font-face {
+  font-family: 'Bubur Diaduk';
+  src: url('./assets/fonts/b-bubur-diaduk/BuburDiaduk-x3GpV.otf') format('opentype');
+  font-weight: normal;
+  font-style: normal;
+}
+
 :root {
   --primary-color: #8fcfa3;
   --secondary-color: #f1e2c5;
