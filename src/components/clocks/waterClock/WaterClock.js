@@ -69,11 +69,10 @@ export default function WaterClock() {
         properties={{
           lines: 6,
           fontSize: 5,
-          startScale: 2,
+          startScale: format === '12' ? 2 : 4,
           stepScale: format === '12' ? 2 : 4,
           spacesBetweenValues: 1,
           scaleTextHeight: 110,
-          offsetLines: format === '12' ? 0 : 1,
           updateEachSecs: updateEachSecs,
         }}
         now={(format === '12' ? hours % 12 : hours) + mins / 60 + secs / 3600}
