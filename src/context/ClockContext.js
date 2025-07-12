@@ -6,6 +6,7 @@ export default function ClockContextProvider({ children }) {
   const [timestamp, setTimestamp] = React.useState(Date.now());
   const [timeModifier, setTimeModifier] = React.useState(0);
   const [format, setFormat] = React.useState('12');
+  const [isSliderActive, setIsSliderActive] = React.useState(false);
 
   // Update the timestamp every second to force a re-render
   React.useEffect(() => {
@@ -22,6 +23,8 @@ export default function ClockContextProvider({ children }) {
     setTimeModifier,
     format,
     setFormat,
+    isSliderActive,
+    setIsSliderActive,
   };
 
   return (

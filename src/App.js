@@ -32,7 +32,7 @@ function App() {
 
   return (
     <div className="app" >
-      {/**<Header setType={setType} allTypes={allTypes} type={type} /> */}
+      <Header setType={setType} allTypes={allTypes} type={type} />
       <Navigation 
         pages={pages} 
         currentPage={consumeContext.currentPage === 'default' ? 'Clocks' : consumeContext.currentPage} 

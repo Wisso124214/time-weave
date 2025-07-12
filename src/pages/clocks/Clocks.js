@@ -6,7 +6,7 @@ import ClockContextProvider, { ClockContext } from '@context/ClockContext';
 import SliderTime from '@components/sliderTime/SliderTime';
 
 export default function Clocks() {
-  const [clockSelected, setClockSelected] = React.useState('WaterClock');
+  const [clockSelected, setClockSelected] = React.useState('Blank');
   const allClocks = [
     'Digital',
     'CarClock',

@@ -2,17 +2,16 @@ import React from 'react';
 import './WaterClock.css';
 import WaterIndicator from './waterIndicator/WaterIndicator';
 import { ClockContext } from '@context/ClockContext';
-import WaterCard from './waterCard/WaterCard';
 import WaterDistorsion from './waterDistorsion/WaterDistorsion';
 import WaterBowl from './waterBowl/WaterBowl';
   
-export default function WaterClock() {
+export default function WaterClock({ isSliderActive }) {
   const { timestamp, timeModifier, format } = React.useContext(ClockContext);
   const adjustedTimestamp = timestamp + timeModifier * 1000;
   const [secs, setSecs] = React.useState(0);
   const [mins, setMins] = React.useState(0);
   const [hours, setHours] = React.useState(0);
-  const updateEachSecs = 2;
+  const updateEachSecs = 1;
 
   React.useEffect(() => {
     const date = new Date(adjustedTimestamp);
@@ -44,6 +43,7 @@ export default function WaterClock() {
           isUpdatingHeight: secs % updateEachSecs === 0,
         }}
         now={secs}
+        isSliderActive={isSliderActive}
       />
 
       <WaterBowl

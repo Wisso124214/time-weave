@@ -1,8 +1,9 @@
 import React from 'react';
 import './SliderTime.css';
+import { ClockContext } from '@context/ClockContext';
 
-export default function SliderTime({ setTimeModifier }) {
-
+export default function SliderTime() {
+  const { setTimeModifier, setIsSliderActive } = React.useContext(ClockContext);
   const [secsModifier, setSecsModifier] = React.useState(0);
   const [minsModifier, setMinsModifier] = React.useState(0);
   const [hoursModifier, setHoursModifier] = React.useState(0);
@@ -26,6 +27,10 @@ export default function SliderTime({ setTimeModifier }) {
           value={typeof hoursModifier === 'number' ? hoursModifier : 0}
           onChange={e => setHoursModifier(Number(e.target.value))}
           onDoubleClick={() => setHoursModifier(0)}
+          onMouseDown={() => setIsSliderActive(true)}
+          onMouseUp={() => setIsSliderActive(false)}
+          onTouchStart={() => setIsSliderActive(true)}
+          onTouchEnd={() => setIsSliderActive(false)}
         />
         <label className='slider-label'>M</label>
         <input
@@ -37,6 +42,10 @@ export default function SliderTime({ setTimeModifier }) {
           value={typeof minsModifier === 'number' ? minsModifier : 0}
           onChange={e => setMinsModifier(Number(e.target.value))}
           onDoubleClick={() => setMinsModifier(0)}
+          onMouseDown={() => setIsSliderActive(true)}
+          onMouseUp={() => setIsSliderActive(false)}
+          onTouchStart={() => setIsSliderActive(true)}
+          onTouchEnd={() => setIsSliderActive(false)}
         />
         <label className='slider-label'>S</label>
         <input
@@ -48,6 +57,10 @@ export default function SliderTime({ setTimeModifier }) {
           value={typeof secsModifier === 'number' ? secsModifier : 0}
           onChange={e => setSecsModifier(Number(e.target.value))}
           onDoubleClick={() => setSecsModifier(0)}
+          onMouseDown={() => setIsSliderActive(true)}
+          onMouseUp={() => setIsSliderActive(false)}
+          onTouchStart={() => setIsSliderActive(true)}
+          onTouchEnd={() => setIsSliderActive(false)}
         />
       </div>
     </div>
