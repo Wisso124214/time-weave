@@ -47,7 +47,7 @@ export default function Header(children) {
             const info = await getInfo();
 
             if (info) {
-              window.location = info.FRONTEND_URL;
+              window.location = info.FRONTEND_URL + '?redirect="' + window.location.href;
             } else {
               console.error('No info found after logout');
             }
@@ -77,7 +77,7 @@ export default function Header(children) {
           const info = await getInfo();
 
           if (info) {
-            window.location = info.FRONTEND_URL;
+            window.location = info.FRONTEND_URL + '?redirect=' + window.location.href;
           } else {
             console.error('No info found after logout');
           }
